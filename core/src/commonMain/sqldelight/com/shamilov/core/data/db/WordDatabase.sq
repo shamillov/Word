@@ -1,0 +1,18 @@
+CREATE TABLE Card(
+    id          INTEGER NOT NULL PRIMARY KEY,
+    word        TEXT NOT NULL,
+    translation TEXT NOT NULL,
+    category    TEXT,
+    status      TEXT NOT NULL,
+    example     TEXT
+);
+
+insertCard:
+INSERT INTO Card(id, word, translation, category, status, example)
+VALUES(?,?,?,?,?,?);
+
+removeAllCards:
+DELETE FROM Card;
+
+selectAllCards:
+SELECT * FROM Card;
