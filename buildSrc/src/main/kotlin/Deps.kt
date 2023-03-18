@@ -5,6 +5,10 @@ object Deps {
         const val native = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     }
 
+    object Koin {
+        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+    }
+
     object Android {
         object Compose {
             const val ui = "androidx.compose.ui:ui:${Versions.composeUi}"

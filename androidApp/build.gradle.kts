@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.shamilov.core.android"
-    compileSdk = 33
+    compileSdk = Config.compileSdk
     defaultConfig {
         applicationId = "com.shamilov.core.android"
-        minSdk = 28
-        targetSdk = 33
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSkd
         versionCode = 1
         versionName = "1.0"
     }

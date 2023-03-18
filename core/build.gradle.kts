@@ -26,6 +26,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(Deps.Koin.core)
                 implementation(Deps.SqlDelight.core)
             }
         }
@@ -73,9 +74,9 @@ sqldelight {
 
 android {
     namespace = "com.shamilov.core"
-    compileSdk = 33
+    compileSdk = Config.compileSdk
     defaultConfig {
-        minSdk = 28
-        targetSdk = 33
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSkd
     }
 }
