@@ -23,12 +23,10 @@ kotlin {
         }
     }
 
-    val sqlDelightVersion = "1.5.5"
-
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation(Deps.SqlDelight.core)
             }
         }
         val commonTest by getting {
@@ -38,7 +36,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+                implementation(Deps.SqlDelight.android)
             }
         }
         val androidUnitTest by getting
@@ -52,8 +50,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
-
+                implementation(Deps.SqlDelight.native)
             }
         }
         val iosX64Test by getting
