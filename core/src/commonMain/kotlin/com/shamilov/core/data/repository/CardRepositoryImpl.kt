@@ -7,6 +7,7 @@ interface CardRepository {
     fun getCards(): List<Card>
     fun insertCard(card: Card)
     fun deleteCard(id: Long)
+    fun clear()
 }
 
 internal class CardRepositoryImpl(
@@ -22,5 +23,9 @@ internal class CardRepositoryImpl(
 
     override fun deleteCard(id: Long) {
         dataStore.deleteCard(id)
+    }
+
+    override fun clear() {
+        dataStore.clear()
     }
 }

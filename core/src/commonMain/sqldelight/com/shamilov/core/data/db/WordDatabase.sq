@@ -1,4 +1,4 @@
-CREATE TABLE Card(
+CREATE TABLE IF NOT EXISTS Card(
     id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     word        TEXT NOT NULL,
     translation TEXT NOT NULL,
@@ -11,7 +11,7 @@ insertCard:
 INSERT OR REPLACE INTO Card(id, word, translation, category, status, example)
 VALUES(?,?,?,?,?,?);
 
-removeAllCards:
+clear:
 DELETE FROM Card;
 
 selectAllCards:

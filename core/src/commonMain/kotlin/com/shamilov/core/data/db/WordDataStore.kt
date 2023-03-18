@@ -23,6 +23,10 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         dbQuery.deleteCard(id)
     }
 
+    fun clear() {
+        dbQuery.clear()
+    }
+
     private fun mapCard(
         id: Long,
         word: String,
