@@ -5,7 +5,7 @@
 
     <string name="toolbar_title_new_card">Новая карточка</string>
 
-    <string name="label_add_new_word">Добавить новую карточку</string>
+    <string name="label_add_new_word">Добавить карточку</string>
     <string name="label_enter_word">Слово *</string>
     <string name="label_enter_translation">Перевод *</string>
     <string name="label_enter_category">Категория</string>

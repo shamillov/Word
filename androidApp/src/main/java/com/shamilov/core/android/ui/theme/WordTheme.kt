@@ -1,11 +1,15 @@
-package com.shamilov.core.android
+package com.shamilov.core.android.ui.theme
 
+import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import com.shamilov.core.android.ui.theme.*
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.ViewCompat
 
 @Composable
 fun WordTheme(
@@ -18,11 +22,17 @@ fun WordTheme(
         LightColors
     }
 
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            (view.context as Activity).window.statusBarColor = colors.background.toArgb()
+            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = !darkTheme
+        }
+    }
+
     MaterialTheme(
         colorScheme = colors,
-        typography = Typography,
-        shapes = shapes,
-        content = content
+        content = content,
     )
 }
 
