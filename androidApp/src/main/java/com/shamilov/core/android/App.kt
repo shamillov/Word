@@ -1,7 +1,7 @@
 package com.shamilov.core.android
 
 import android.app.Application
-import com.shamilov.core.android.di.androidModule
+import com.shamilov.core.android.di.androidContext
 import com.shamilov.core.di.appModule
 import org.koin.core.context.startKoin
 
@@ -11,9 +11,8 @@ class App : Application() {
         super.onCreate()
 
         startKoin {
-            modules(
-                appModule + androidModule(this@App)
-            )
+            androidContext(this@App)
+            modules(appModule)
         }
     }
 }
