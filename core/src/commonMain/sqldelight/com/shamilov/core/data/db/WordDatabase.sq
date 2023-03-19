@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS Card(
 );
 
 insertCard:
-INSERT OR REPLACE INTO Card(id, word, translation, category, status, example)
-VALUES(?,?,?,?,?,?);
+INSERT OR REPLACE INTO Card(word, translation, category, status, example)
+VALUES(?,?,?,?,?);
 
 clear:
 DELETE FROM Card;

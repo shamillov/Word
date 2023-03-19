@@ -8,14 +8,19 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         return dbQuery.selectAllCards(::mapCard).executeAsList()
     }
 
-    fun insertCard(card: Card) {
+    fun insertCard(
+        word: String,
+        translation: String,
+        category: String?,
+        example: String?,
+        status: String,
+    ) {
         dbQuery.insertCard(
-            id = card.id,
-            word = card.word,
-            translation = card.translation,
-            category = card.category,
-            status = card.status,
-            example = card.example,
+            word = word,
+            translation = translation,
+            category = category,
+            status = status,
+            example = example,
         )
     }
 

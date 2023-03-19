@@ -5,7 +5,13 @@ import com.shamilov.core.data.db.WordDataStore
 
 interface CardRepository {
     fun getCards(): List<Card>
-    fun insertCard(card: Card)
+    fun insertCard(
+        word: String,
+        translation: String,
+        category: String?,
+        example: String?,
+        status: String,
+    )
     fun deleteCard(id: Long)
     fun clear()
 }
@@ -17,8 +23,20 @@ internal class CardRepositoryImpl(
         return dataStore.getAllCards()
     }
 
-    override fun insertCard(card: Card) {
-        dataStore.insertCard(card)
+    override fun insertCard(
+        word: String,
+        translation: String,
+        category: String?,
+        example: String?,
+        status: String,
+    ) {
+        dataStore.insertCard(
+            word = word,
+            translation = translation,
+            category = category,
+            example = example,
+            status = status,
+        )
     }
 
     override fun deleteCard(id: Long) {
