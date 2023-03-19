@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_tab_title_cards">Карточки</string>
+    <string name="navigation_tab_title_exam">Экзамен</string>
+
+    <string name="toolbar_title_new_card">Новая карточка</string>
+
+    <string name="label_add_new_word">Добавить новую карточку</string>
+    <string name="label_enter_word">Слово *</string>
+    <string name="label_enter_translation">Перевод *</string>
+    <string name="label_enter_category">Категория</string>
+    <string name="label_enter_example">Пример</string>
+    <string name="label_save_card">Сохранить карточку</string>
+</resources>
