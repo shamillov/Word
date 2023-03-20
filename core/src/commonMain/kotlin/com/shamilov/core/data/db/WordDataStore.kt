@@ -14,6 +14,7 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         category: String?,
         example: String?,
         status: String,
+        timestamp: Long,
     ) {
         dbQuery.insertCard(
             word = word,
@@ -21,6 +22,7 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
             category = category,
             status = status,
             example = example,
+            timestamp = timestamp,
         )
     }
 
@@ -38,7 +40,8 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         translation: String,
         category: String?,
         status: String,
-        example: String?
+        example: String?,
+        timestamp: Long,
     ) = Card(
         id = id,
         word = word,
@@ -46,5 +49,6 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         category = category,
         status = status,
         example = example,
+        timestamp = timestamp,
     )
 }

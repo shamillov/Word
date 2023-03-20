@@ -7,6 +7,9 @@ import org.koin.core.logger.Level
 import org.koin.dsl.binds
 import org.koin.dsl.module
 
+/**
+   Расширение для предоставления контекста в di граф
+ */
 fun KoinApplication.androidContext(androidContext: Context): KoinApplication {
     if (koin.logger.isAt(Level.INFO)) {
         koin.logger.info("[init] declare Android Context")

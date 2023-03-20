@@ -20,4 +20,6 @@ object Deps {
         }
         const val materia3 = "androidx.compose.material3:material3:${Versions.material3}"
     }
+
+    val DateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
 }

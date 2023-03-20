@@ -4,12 +4,13 @@ CREATE TABLE IF NOT EXISTS Card(
     translation TEXT NOT NULL,
     category    TEXT,
     status      TEXT NOT NULL,
-    example     TEXT
+    example     TEXT,
+    timestamp   INTEGER NOT NULL
 );
 
 insertCard:
-INSERT OR REPLACE INTO Card(word, translation, category, status, example)
-VALUES(?,?,?,?,?);
+INSERT OR REPLACE INTO Card(word, translation, category, status, example, timestamp)
+VALUES(:word,:translation,:category,:status,:example, :timestamp);
 
 clear:
 DELETE FROM Card;
@@ -18,4 +19,4 @@ selectAllCards:
 SELECT * FROM Card;
 
 deleteCard:
-DELETE FROM Card WHERE id = ?;
+DELETE FROM Card WHERE id = :id;

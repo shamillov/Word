@@ -2,6 +2,7 @@ package com.shamilov.core.data.repository
 
 import com.shamilov.core.data.db.Card
 import com.shamilov.core.data.db.WordDataStore
+import kotlinx.datetime.Clock
 
 interface CardRepository {
     fun getCards(): List<Card>
@@ -36,6 +37,7 @@ internal class CardRepositoryImpl(
             category = category,
             example = example,
             status = status,
+            timestamp = Clock.System.now().epochSeconds,
         )
     }
 

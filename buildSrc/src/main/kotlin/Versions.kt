@@ -14,9 +14,12 @@ object Versions {
     // ui
     const val material3 = "1.1.0-alpha08"
 
-    //kotlin
+    // kotlin
     const val kotlin = "1.8.0"
 
-    //gradle
+    // gradle
     const val gradlePlugin = "7.4.2"
+
+    // datetime
+    const val dateTime = "0.4.0"
 }
