@@ -8,6 +8,7 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -16,11 +17,12 @@ fun DefaultSpacer(space: Dp = 16.dp) {
     Spacer(modifier = Modifier.size(space))
 }
 
-@Composable
 fun Modifier.boundedClickable(
     onClick: () -> Unit,
-): Modifier = clickable(
-    interactionSource = remember { MutableInteractionSource() },
-    indication = rememberRipple(bounded = false),
-    onClick = onClick,
-)
+): Modifier = composed {
+    clickable(
+        interactionSource = remember { MutableInteractionSource() },
+        indication = rememberRipple(bounded = false),
+        onClick = onClick,
+    )
+}
