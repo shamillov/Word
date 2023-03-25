@@ -10,5 +10,7 @@
     <string name="label_enter_translation">Перевод *</string>
     <string name="label_enter_category">Категория</string>
     <string name="label_enter_example">Пример</string>
-    <string name="label_save_card">Сохранить карточку</string>
+    <string name="label_action_save">Сохранить</string>
+    <string name="label_action_edit">Изменить</string>
+    <string name="label_action_delete">Удалить</string>
 </resources>
