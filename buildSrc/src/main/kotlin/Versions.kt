@@ -22,4 +22,7 @@ object Versions {
 
     // datetime
     const val dateTime = "0.4.0"
+
+    //coroutines
+    const val coroutines = "1.7.0-Beta"
 }

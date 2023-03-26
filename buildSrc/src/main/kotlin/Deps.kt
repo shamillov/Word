@@ -3,6 +3,7 @@ object Deps {
         const val core = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
         const val android = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
         const val native = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+        const val extentions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
     }
 
     object Koin {
@@ -21,5 +22,8 @@ object Deps {
         const val materia3 = "androidx.compose.material3:material3:${Versions.material3}"
     }
 
-    val DateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
+    object Kotlin {
+        val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    }
 }

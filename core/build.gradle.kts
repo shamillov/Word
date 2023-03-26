@@ -28,7 +28,8 @@ kotlin {
             dependencies {
                 api(Deps.Koin.core)
                 implementation(Deps.SqlDelight.core)
-                implementation(Deps.DateTime)
+                implementation(Deps.SqlDelight.extentions)
+                implementation(Deps.Kotlin.dateTime)
             }
         }
         val commonTest by getting {

@@ -11,7 +11,7 @@
     <string name="label_enter_category">Category</string>
     <string name="label_enter_example">Example</string>
 
-    <string name="label_action_save">Save</string>
+    <string name="label_action_save">Save card</string>
     <string name="label_action_edit">Edit</string>
     <string name="label_action_delete">Delete</string>
 </resources>
