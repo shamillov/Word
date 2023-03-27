@@ -2,10 +2,11 @@ package com.shamilov.core.data.repository
 
 import com.shamilov.core.data.db.Card
 import com.shamilov.core.data.db.WordDataStore
+import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
 
 interface CardRepository {
-    fun getCards(): List<Card>
+    fun getCards(): Flow<List<Card>>
     fun insertCard(
         word: String,
         translation: String,
@@ -20,7 +21,7 @@ interface CardRepository {
 internal class CardRepositoryImpl(
     private val dataStore: WordDataStore,
 ) : CardRepository {
-    override fun getCards(): List<Card> {
+    override fun getCards(): Flow<List<Card>> {
         return dataStore.getAllCards()
     }
 

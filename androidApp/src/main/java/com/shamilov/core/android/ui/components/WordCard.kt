@@ -1,46 +1,122 @@
 package com.shamilov.core.android.ui.components
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.Edit
+import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.shamilov.core.android.ui.theme.sizeM
+import com.shamilov.core.android.R
+import com.shamilov.core.android.ui.theme.size3XL
+import com.shamilov.core.android.ui.theme.spaceM
+import com.shamilov.core.android.ui.theme.spaceXS
+import com.shamilov.core.android.ui.utils.boundedClickable
 
 internal data class CardItem(
     val id: Long,
     val word: String,
     val translation: String,
-    val backgroundColor: Color,
+    val status: String,
     val category: String? = null,
     val example: String? = null,
 )
 
 @Composable
-internal fun WordCard(cardItem: CardItem) {
+internal fun WordCard(
+    card: CardItem,
+    translationVisible: Boolean,
+    modifier: Modifier = Modifier,
+    onEditCardClick: () -> Unit,
+    onDeleteCardClick: () -> Unit,
+) {
     val configuration = LocalConfiguration.current
-    val displayWidth = configuration.screenWidthDp
+    val displayWidth = configuration.screenWidthDp.dp - size3XL
+
+    var exposedMenu by remember { mutableStateOf(false) }
 
     Card(
-        colors = CardDefaults.cardColors(cardItem.backgroundColor),
-        modifier = Modifier
-            .size(displayWidth.dp)
-            .padding(16.dp)
+        modifier = modifier
+            .size(displayWidth)
     ) {
-        Text(
-            text = cardItem.word,
-            style = MaterialTheme.typography.displayMedium,
-            modifier = Modifier.padding(sizeM)
-                .align(alignment = Alignment.CenterHorizontally)
-        )
+        Box(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier
+                    .align(alignment = Alignment.TopEnd)
+                    .padding(spaceXS)
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.MoreVert,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .boundedClickable { exposedMenu = true }
+                )
+
+                DropdownMenu(
+                    expanded = exposedMenu,
+                    onDismissRequest = { exposedMenu = false },
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.label_action_edit)) },
+                        onClick = {
+                            onEditCardClick()
+                            exposedMenu = false
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Rounded.Edit,
+                                contentDescription = null,
+                            )
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.label_action_delete)) },
+                        onClick = {
+                            onDeleteCardClick()
+                            exposedMenu = false
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Rounded.Delete,
+                                contentDescription = null,
+                            )
+                        }
+                    )
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .align(alignment = Alignment.Center)
+                    .padding(spaceM)
+            ) {
+                Text(
+                    text = card.word,
+                    style = MaterialTheme.typography.displayMedium,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+                )
+                AnimatedVisibility(
+                    visible = translationVisible,
+                    modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+                ) {
+                    Text(
+                        text = card.translation,
+                        style = MaterialTheme.typography.displaySmall,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -48,11 +124,14 @@ internal fun WordCard(cardItem: CardItem) {
 @Preview
 fun WordCardPreview() {
     WordCard(
-        cardItem = CardItem(
+        card = CardItem(
             id = 0,
-            word = "Hello",
-            translation = "Привет",
-            backgroundColor = MaterialTheme.colorScheme.primaryContainer,
-        )
+            word = "hello",
+            translation = "привет",
+            status = "new",
+        ),
+        translationVisible = true,
+        onEditCardClick = {},
+        onDeleteCardClick = {},
     )
 }

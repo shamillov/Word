@@ -1,11 +1,17 @@
 package com.shamilov.core.data.db
 
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
+import kotlinx.coroutines.flow.Flow
+
 internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
     private val database = WordDatabase.invoke(databaseDriverFactory.createDriver())
     private val dbQuery = database.wordDatabaseQueries
 
-    fun getAllCards(): List<Card> {
-        return dbQuery.selectAllCards(::mapCard).executeAsList()
+    fun getAllCards(): Flow<List<Card>> {
+        return dbQuery.selectAllCards()
+            .asFlow()
+            .mapToList()
     }
 
     fun insertCard(
@@ -33,22 +39,4 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
     fun clear() {
         dbQuery.clear()
     }
-
-    private fun mapCard(
-        id: Long,
-        word: String,
-        translation: String,
-        category: String?,
-        status: String,
-        example: String?,
-        timestamp: Long,
-    ) = Card(
-        id = id,
-        word = word,
-        translation = translation,
-        category = category,
-        status = status,
-        example = example,
-        timestamp = timestamp,
-    )
 }
