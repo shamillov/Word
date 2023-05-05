@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -70,7 +71,9 @@ internal fun MainScreen() {
             startDestination = Screen.CARDS.name,
             modifier = Modifier.padding(bottom = padding.calculateBottomPadding())
         ) {
-            composable(Screen.CARDS.name) { CardsScreen(navController) }
+            composable(Screen.CARDS.name) {
+                CardsScreen(navController, viewModel())
+            }
             composable(Screen.EXAM.name) { ExamScreen() }
             composable(Screen.NEW_CARD.name) { NewCardScreen(navController) }
         }
