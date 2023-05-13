@@ -8,7 +8,11 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
     private val database = WordDatabase.invoke(databaseDriverFactory.createDriver())
     private val dbQuery = database.wordDatabaseQueries
 
-    fun getAllCards(): Flow<List<Card>> {
+    fun getCards(): List<Card> {
+        return dbQuery.selectAllCards().executeAsList()
+    }
+
+    fun observeCards(): Flow<List<Card>> {
         return dbQuery.selectAllCards()
             .asFlow()
             .mapToList()

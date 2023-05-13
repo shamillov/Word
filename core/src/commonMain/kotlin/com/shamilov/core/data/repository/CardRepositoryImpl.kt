@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
 
 interface CardRepository {
-    fun getCards(): Flow<List<Card>>
+    fun getCards(): List<Card>
+    fun observeCards(): Flow<List<Card>>
     fun insertCard(
         word: String,
         translation: String,
@@ -21,8 +22,13 @@ interface CardRepository {
 internal class CardRepositoryImpl(
     private val dataStore: WordDataStore,
 ) : CardRepository {
-    override fun getCards(): Flow<List<Card>> {
-        return dataStore.getAllCards()
+
+    override fun getCards(): List<Card> {
+        return dataStore.getCards()
+    }
+
+    override fun observeCards(): Flow<List<Card>> {
+        return dataStore.observeCards()
     }
 
     override fun insertCard(

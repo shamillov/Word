@@ -20,7 +20,7 @@ class CardsViewModel : ViewModel(), KoinComponent {
 
     init {
         viewModelScope.launch {
-            repository.getCards().collectLatest { cards ->
+            repository.observeCards().collectLatest { cards ->
                 _viewState.update {
                     it.copy(cards = mapCardsToUi(cards))
                 }
