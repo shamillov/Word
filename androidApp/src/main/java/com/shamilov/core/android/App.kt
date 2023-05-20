@@ -12,6 +12,10 @@ class App : Application() {
         enableStrictMode()
         super.onCreate()
 
+        initDI()
+    }
+
+    private fun initDI() {
         startKoin {
             androidContext(this@App)
             modules(appModule)
@@ -19,21 +23,23 @@ class App : Application() {
     }
 
     private fun enableStrictMode() {
-        StrictMode
-            .setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                    .detectActivityLeaks()
-                    .detectLeakedSqlLiteObjects()
-                    .penaltyLog()
-                    .build()
-            )
-        StrictMode
-            .setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .penaltyLog()
-                    .build()
-            )
+        if (BuildConfig.DEBUG) {
+            StrictMode
+                .setVmPolicy(
+                    StrictMode.VmPolicy.Builder()
+                        .detectActivityLeaks()
+                        .detectLeakedSqlLiteObjects()
+                        .penaltyLog()
+                        .build()
+                )
+            StrictMode
+                .setThreadPolicy(
+                    StrictMode.ThreadPolicy.Builder()
+                        .detectDiskReads()
+                        .detectDiskWrites()
+                        .penaltyLog()
+                        .build()
+                )
+        }
     }
 }
