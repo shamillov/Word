@@ -1,8 +1,9 @@
 package com.shamilov.core.android.ui
 
-internal enum class Screen {
+internal enum class Screens {
     CARDS,
     EXAM,
     NEW_CARD,
     SETTINGS,
+    PROFILE,
 }

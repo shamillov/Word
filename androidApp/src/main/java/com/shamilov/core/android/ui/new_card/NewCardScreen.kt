@@ -31,7 +31,7 @@ import com.shamilov.core.android.ui.utils.DefaultSpacer
 import com.shamilov.core.android.ui.utils.boundedClickable
 
 @Composable
-fun NewCardScreen(
+internal fun NewCardScreen(
     navController: NavController,
     cardsViewModel: CardsViewModel = viewModel()
 ) {

@@ -18,14 +18,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.shamilov.core.android.R
-import com.shamilov.core.android.ui.Screen
+import com.shamilov.core.android.ui.Screens
 import com.shamilov.core.android.ui.cards.CardsScreen
 import com.shamilov.core.android.ui.exam.ExamScreen
 import com.shamilov.core.android.ui.new_card.NewCardScreen
 
 internal enum class NavigationItem(val label: Int, val icon: ImageVector, val screen: String) {
-    CARDS(R.string.navigation_tab_title_cards, Icons.Rounded.Favorite, Screen.CARDS.name),
-    EXAM(R.string.navigation_tab_title_exam, Icons.Rounded.PlayArrow, Screen.EXAM.name),
+    CARDS(R.string.navigation_tab_title_cards, Icons.Rounded.Favorite, Screens.CARDS.name),
+    EXAM(R.string.navigation_tab_title_exam, Icons.Rounded.PlayArrow, Screens.EXAM.name),
 }
 
 @Composable
@@ -68,14 +68,14 @@ internal fun MainScreen() {
     ) { padding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.CARDS.name,
+            startDestination = Screens.CARDS.name,
             modifier = Modifier.padding(bottom = padding.calculateBottomPadding())
         ) {
-            composable(Screen.CARDS.name) {
+            composable(Screens.CARDS.name) {
                 CardsScreen(navController, viewModel())
             }
-            composable(Screen.EXAM.name) { ExamScreen() }
-            composable(Screen.NEW_CARD.name) { NewCardScreen(navController) }
+            composable(Screens.EXAM.name) { ExamScreen(viewModel()) }
+            composable(Screens.NEW_CARD.name) { NewCardScreen(navController) }
         }
     }
 }
