@@ -25,4 +25,7 @@ object Versions {
 
     //coroutines
     const val coroutines = "1.7.0-Beta"
+
+    // performance
+    const val leakCanary = "2.11"
 }

@@ -47,4 +47,5 @@ dependencies {
     implementation(Deps.Android.Compose.uiTooling)
     implementation(Deps.Android.Compose.uiToolingPreview)
     implementation(Deps.Android.materia3)
+    debugImplementation(Deps.Android.leakCanary)
 }

@@ -20,6 +20,7 @@ object Deps {
             const val activity = "androidx.activity:activity-compose:${Versions.composeActivity}"
         }
         const val materia3 = "androidx.compose.material3:material3:${Versions.material3}"
+        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
     }
 
     object Kotlin {
