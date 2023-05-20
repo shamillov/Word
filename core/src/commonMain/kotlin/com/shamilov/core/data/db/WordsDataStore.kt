@@ -4,7 +4,7 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 
-internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
+internal class WordsDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
     private val database = WordDatabase.invoke(databaseDriverFactory.createDriver())
     private val dbQuery = database.wordDatabaseQueries
 

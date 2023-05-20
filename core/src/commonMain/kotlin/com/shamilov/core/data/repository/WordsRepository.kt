@@ -1,7 +1,7 @@
 package com.shamilov.core.data.repository
 
 import com.shamilov.core.data.db.Word
-import com.shamilov.core.data.db.WordDataStore
+import com.shamilov.core.data.db.WordsDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
 
@@ -20,7 +20,7 @@ interface WordsRepository {
 }
 
 internal class WordsRepositoryImpl(
-    private val dataStore: WordDataStore,
+    private val dataStore: WordsDataStore,
 ) : WordsRepository {
 
     override fun getWords(): List<Word> {

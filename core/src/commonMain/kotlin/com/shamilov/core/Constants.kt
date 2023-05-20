@@ -1,5 +1,6 @@
 package com.shamilov.core
 
-object Constants {
+internal object Constants {
     const val DATABASE_NAME = "word.db"
+    const val PREFERENCES_NAME = "word.prefs"
 }
