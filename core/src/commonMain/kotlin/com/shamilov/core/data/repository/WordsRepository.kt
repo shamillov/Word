@@ -1,44 +1,44 @@
 package com.shamilov.core.data.repository
 
-import com.shamilov.core.data.db.Card
+import com.shamilov.core.data.db.Word
 import com.shamilov.core.data.db.WordDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
 
-interface CardRepository {
-    fun getCards(): List<Card>
-    fun observeCards(): Flow<List<Card>>
-    fun insertCard(
+interface WordsRepository {
+    fun getWords(): List<Word>
+    fun observeWords(): Flow<List<Word>>
+    fun insertWord(
         word: String,
         translation: String,
         category: String?,
         example: String?,
         status: String,
     )
-    fun deleteCard(id: Long)
+    fun deleteWord(id: Long)
     fun clear()
 }
 
-internal class CardRepositoryImpl(
+internal class WordsRepositoryImpl(
     private val dataStore: WordDataStore,
-) : CardRepository {
+) : WordsRepository {
 
-    override fun getCards(): List<Card> {
-        return dataStore.getCards()
+    override fun getWords(): List<Word> {
+        return dataStore.getWords()
     }
 
-    override fun observeCards(): Flow<List<Card>> {
-        return dataStore.observeCards()
+    override fun observeWords(): Flow<List<Word>> {
+        return dataStore.observeWords()
     }
 
-    override fun insertCard(
+    override fun insertWord(
         word: String,
         translation: String,
         category: String?,
         example: String?,
         status: String,
     ) {
-        dataStore.insertCard(
+        dataStore.insertWord(
             word = word,
             translation = translation,
             category = category,
@@ -48,8 +48,8 @@ internal class CardRepositoryImpl(
         )
     }
 
-    override fun deleteCard(id: Long) {
-        dataStore.deleteCard(id)
+    override fun deleteWord(id: Long) {
+        dataStore.deleteWord(id)
     }
 
     override fun clear() {

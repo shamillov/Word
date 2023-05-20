@@ -8,17 +8,17 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
     private val database = WordDatabase.invoke(databaseDriverFactory.createDriver())
     private val dbQuery = database.wordDatabaseQueries
 
-    fun getCards(): List<Card> {
-        return dbQuery.selectAllCards().executeAsList()
+    fun getWords(): List<Word> {
+        return dbQuery.selectAllWords().executeAsList()
     }
 
-    fun observeCards(): Flow<List<Card>> {
-        return dbQuery.selectAllCards()
+    fun observeWords(): Flow<List<Word>> {
+        return dbQuery.selectAllWords()
             .asFlow()
             .mapToList()
     }
 
-    fun insertCard(
+    fun insertWord(
         word: String,
         translation: String,
         category: String?,
@@ -26,7 +26,7 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         status: String,
         timestamp: Long,
     ) {
-        dbQuery.insertCard(
+        dbQuery.insertWord(
             word = word,
             translation = translation,
             category = category,
@@ -36,8 +36,8 @@ internal class WordDataStore(databaseDriverFactory: WordDatabaseDriverFactory) {
         )
     }
 
-    fun deleteCard(id: Long) {
-        dbQuery.deleteCard(id)
+    fun deleteWord(id: Long) {
+        dbQuery.deleteWord(id)
     }
 
     fun clear() {

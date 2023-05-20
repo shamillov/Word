@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Card(
+CREATE TABLE IF NOT EXISTS Word(
     id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     word        TEXT NOT NULL,
     translation TEXT NOT NULL,
@@ -8,15 +8,15 @@ CREATE TABLE IF NOT EXISTS Card(
     timestamp   INTEGER NOT NULL
 );
 
-insertCard:
-INSERT OR REPLACE INTO Card(word, translation, category, status, example, timestamp)
+insertWord:
+INSERT OR REPLACE INTO Word(word, translation, category, status, example, timestamp)
 VALUES(:word,:translation,:category,:status,:example, :timestamp);
 
 clear:
-DELETE FROM Card;
+DELETE FROM Word;
 
-selectAllCards:
-SELECT * FROM Card;
+selectAllWords:
+SELECT * FROM Word;
 
-deleteCard:
-DELETE FROM Card WHERE id = :id;
+deleteWord:
+DELETE FROM Word WHERE id = :id;

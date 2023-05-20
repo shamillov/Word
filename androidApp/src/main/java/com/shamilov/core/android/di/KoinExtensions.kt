@@ -8,7 +8,7 @@ import org.koin.dsl.binds
 import org.koin.dsl.module
 
 /**
-   Расширение для предоставления контекста в di граф
+   Расширение для предоставления [Context] в di граф
  */
 fun KoinApplication.androidContext(androidContext: Context): KoinApplication {
     if (koin.logger.isAt(Level.INFO)) {
