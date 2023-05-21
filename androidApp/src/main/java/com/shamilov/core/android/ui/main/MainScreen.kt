@@ -72,9 +72,9 @@ internal fun MainScreen() {
             modifier = Modifier.padding(bottom = padding.calculateBottomPadding())
         ) {
             composable(Screens.CARDS.name) {
-                CardsScreen(navController, viewModel())
+                CardsScreen(navController)
             }
-            composable(Screens.EXAM.name) { ExamScreen(viewModel()) }
+            composable(Screens.EXAM.name) { ExamScreen() }
             composable(Screens.NEW_CARD.name) { NewCardScreen(navController) }
         }
     }

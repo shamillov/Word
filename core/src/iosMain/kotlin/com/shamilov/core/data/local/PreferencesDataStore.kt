@@ -1,7 +1,7 @@
 package com.shamilov.core.data.local
 
 actual class PreferencesDataStore {
-    actual fun getBoolean(key: String, defaultValue: Boolean): Boolean? {
+    actual fun getBoolean(key: String, defaultValue: Boolean): Boolean {
         TODO("Not yet implemented")
     }
 

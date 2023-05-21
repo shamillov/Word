@@ -8,7 +8,7 @@ actual class PreferencesDataStore(
 ) {
     private val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
-    actual fun getBoolean(key: String, defaultValue: Boolean): Boolean? {
+    actual fun getBoolean(key: String, defaultValue: Boolean): Boolean {
         return sharedPreferences.getBoolean(key, defaultValue)
     }
 

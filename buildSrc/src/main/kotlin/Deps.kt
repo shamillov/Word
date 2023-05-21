@@ -21,6 +21,7 @@ object Deps {
         }
         const val materia3 = "androidx.compose.material3:material3:${Versions.material3}"
         const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+        const val koinAndroid = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
     }
 
     object Kotlin {

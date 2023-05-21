@@ -2,9 +2,12 @@ package com.shamilov.core.android
 
 import android.app.Application
 import android.os.StrictMode
-import com.shamilov.core.android.di.androidContext
+import com.shamilov.core.android.di.androidModule
 import com.shamilov.core.di.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class App : Application() {
 
@@ -17,8 +20,9 @@ class App : Application() {
 
     private fun initDI() {
         startKoin {
+            androidLogger(level = Level.DEBUG)
             androidContext(this@App)
-            modules(appModule)
+            modules(appModule + androidModule)
         }
     }
 
