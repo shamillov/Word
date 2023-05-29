@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.StrictMode
 import com.shamilov.core.android.di.androidModule
 import com.shamilov.core.di.appModule
+import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

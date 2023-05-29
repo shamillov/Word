@@ -18,7 +18,7 @@ object Versions {
     const val kotlin = "1.8.10"
 
     // gradle
-    const val gradlePlugin = "7.4.2"
+    const val gradlePlugin = "8.0.1"
 
     // datetime
     const val dateTime = "0.4.0"
@@ -28,4 +28,7 @@ object Versions {
 
     // performance
     const val leakCanary = "2.11"
+
+    //detekt
+    const val detekt = "1.23.0"
 }
