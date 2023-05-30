@@ -3,33 +3,53 @@ package com.shamilov.core.android.ui.cards
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shamilov.core.android.ui.components.CardItem
-import com.shamilov.core.data.db.Card
+import com.shamilov.core.data.db.Word
 import com.shamilov.core.data.entity.CardStatus
-import com.shamilov.core.data.repository.CardRepository
-import kotlinx.coroutines.flow.*
+import com.shamilov.core.data.repository.WordsRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class CardsViewModel : ViewModel(), KoinComponent {
-
-    private val repository: CardRepository by inject()
+internal class CardsViewModel(
+    private val repository: WordsRepository,
+) : ViewModel() {
 
     private val _viewState = MutableStateFlow(value = CardsUiState.initState())
-    internal val viewState: StateFlow<CardsUiState> = _viewState
+    val viewState: StateFlow<CardsUiState> = _viewState
 
     init {
         viewModelScope.launch {
-            repository.observeCards().collectLatest { cards ->
-                _viewState.update {
-                    it.copy(cards = mapCardsToUi(cards))
+            repository.observeWords().collectLatest { words ->
+                _viewState.update { state ->
+                    state.copy(cards = mapCardsToUi(words))
                 }
             }
         }
     }
 
-    fun accept(message: CardsMessage) = when (message) {
-        is CardsMessage.TranslationVisible -> _viewState.update { it.copy(translationVisible = message.visible) }
+    fun changeTranslationVisible(current: CardItem) {
+        _viewState.update { state ->
+            val cards = state.cards.map { card ->
+                if (card.id == current.id) card.copy(translationVisible = !current.translationVisible) else card
+            }
+
+            state.copy(cards = cards)
+        }
+    }
+
+    fun changeAllTranslationVisible(show: Boolean) {
+        _viewState.update { state ->
+            val cards = state.cards.map { card ->
+                if (card.translationVisible == show) card else card.copy(translationVisible = show)
+            }
+
+            state.copy(
+                cards = cards,
+                cardsTranslationVisible = show,
+            )
+        }
     }
 
     fun saveCard(
@@ -38,7 +58,7 @@ class CardsViewModel : ViewModel(), KoinComponent {
         category: String?,
         example: String?,
     ) {
-        repository.insertCard(
+        repository.insertWord(
             word = word,
             translation = translation,
             category = category,
@@ -52,10 +72,10 @@ class CardsViewModel : ViewModel(), KoinComponent {
     }
 
     fun deleteCard(id: Long) {
-        repository.deleteCard(id)
+        repository.deleteWord(id)
     }
 
-    private fun mapCardsToUi(list: List<Card>): List<CardItem> {
+    private fun mapCardsToUi(list: List<Word>): List<CardItem> {
         return list.map {
             CardItem(
                 id = it.id,
