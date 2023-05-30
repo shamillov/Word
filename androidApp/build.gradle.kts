@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    //move to buildSrc
+    implementation("androidx.glance:glance-appwidget:1.0.0-SNAPSHOT")
     implementation(project(":core"))
     implementation(Deps.Android.Compose.activity)
     implementation(Deps.Android.Compose.foundation)
