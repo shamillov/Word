@@ -5,11 +5,10 @@ import com.shamilov.core.domain.usecase.ExamUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class ExamViewModel : ViewModel(), KoinComponent {
-    private val examUseCase by inject<ExamUseCase>()
+class ExamViewModel(
+    private val examUseCase: ExamUseCase,
+) : ViewModel() {
 
     private val _viewState = MutableStateFlow(ExamUiState(examUseCase.getExamStep()))
     internal val viewState: StateFlow<ExamUiState> = _viewState

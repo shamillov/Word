@@ -1,7 +1,12 @@
 package com.shamilov.core.android.ui.new_card
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -9,8 +14,17 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Done
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -18,22 +32,22 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.shamilov.core.android.R
-import com.shamilov.core.android.ui.cards.CardsViewModel
 import com.shamilov.core.android.ui.components.Toolbar
 import com.shamilov.core.android.ui.theme.sizeM
 import com.shamilov.core.android.ui.theme.sizeXS
 import com.shamilov.core.android.ui.theme.spaceM
 import com.shamilov.core.android.ui.utils.DefaultSpacer
 import com.shamilov.core.android.ui.utils.boundedClickable
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun NewCardScreen(
     navController: NavController,
-    cardsViewModel: CardsViewModel = viewModel()
+    cardsViewModel: NewCardViewModel = koinViewModel()
 ) {
     Box(
         modifier = Modifier
@@ -45,6 +59,8 @@ internal fun NewCardScreen(
         var translate by remember { mutableStateOf("") }
         var category by remember { mutableStateOf("") }
         var example by remember { mutableStateOf("") }
+
+        var andOneMoreCheck by remember { mutableStateOf(false) }
 
         var wordIsEmptyError by remember { mutableStateOf(false) }
         var translationIsEmptyError by remember { mutableStateOf(false) }
@@ -132,7 +148,7 @@ internal fun NewCardScreen(
                     .padding(horizontal = sizeM)
             )
 
-            DefaultSpacer()
+            DefaultSpacer(space = sizeXS)
 
             OutlinedTextField(
                 value = example,
@@ -156,6 +172,18 @@ internal fun NewCardScreen(
                     .fillMaxWidth()
                     .padding(horizontal = sizeM)
             )
+
+            DefaultSpacer(space = sizeXS)
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Checkbox(checked = andOneMoreCheck, onCheckedChange = {
+                    andOneMoreCheck = it
+                })
+                Text(text = "Добавить еще одну каточку")
+            }
         }
 
         ExtendedFloatingActionButton(
@@ -171,6 +199,7 @@ internal fun NewCardScreen(
                         translation = translate,
                         category = category,
                         example = example,
+                        andOneMoreWord = andOneMoreCheck,
                     )
                     navController.navigateUp()
                 }

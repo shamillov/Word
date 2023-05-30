@@ -1,13 +1,28 @@
 package com.shamilov.core.android.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -29,13 +44,14 @@ internal data class CardItem(
     val status: String,
     val category: String? = null,
     val example: String? = null,
+    var translationVisible: Boolean = false,
 )
 
 @Composable
 internal fun WordCard(
     card: CardItem,
-    translationVisible: Boolean,
     modifier: Modifier = Modifier,
+    onCardClick: () -> Unit,
     onEditCardClick: () -> Unit,
     onDeleteCardClick: () -> Unit,
 ) {
@@ -48,7 +64,11 @@ internal fun WordCard(
         modifier = modifier
             .size(displayWidth)
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable { onCardClick() }
+        ) {
             Box(
                 modifier = Modifier
                     .align(alignment = Alignment.TopEnd)
@@ -106,7 +126,7 @@ internal fun WordCard(
                     modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                 )
                 AnimatedVisibility(
-                    visible = translationVisible,
+                    visible = card.translationVisible,
                     modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                 ) {
                     Text(
@@ -130,7 +150,7 @@ fun WordCardPreview() {
             translation = "привет",
             status = "new",
         ),
-        translationVisible = true,
+        onCardClick = {},
         onEditCardClick = {},
         onDeleteCardClick = {},
     )
