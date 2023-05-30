@@ -8,7 +8,7 @@ struct ContentView: View {
         TabView {
             CardsView()
                 .tabItem {
-                    Image(systemName: "")
+                    Image(systemName: "heart.fill")
                     Text("Cards")
                 }
             ExamView()

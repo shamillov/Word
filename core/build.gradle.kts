@@ -79,6 +79,5 @@ android {
     compileSdk = Config.compileSdk
     defaultConfig {
         minSdk = Config.minSdk
-        targetSdk = Config.targetSkd
     }
 }
