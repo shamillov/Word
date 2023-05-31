@@ -17,7 +17,7 @@
         </activity>
 
         <receiver
-            android:name=".widget.WordWidgetReceiver"
+            android:name=".widget.WidgetReceiver"
             android:exported="false"
             android:label="Word Widget">
 

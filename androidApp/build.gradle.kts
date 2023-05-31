@@ -42,7 +42,7 @@ dependencies {
     implementation(project(":core"))
 
     //move to buildSrc
-    implementation("androidx.glance:glance-appwidget:1.0.0-SNAPSHOT")
+    implementation("androidx.glance:glance-appwidget:1.0.0-beta01")
 
     implementation(Deps.Android.Compose.activity)
     implementation(Deps.Android.Compose.foundation)
