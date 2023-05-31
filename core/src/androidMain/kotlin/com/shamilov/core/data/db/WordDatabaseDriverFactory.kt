@@ -1,7 +1,7 @@
 package com.shamilov.core.data.db
 
 import android.content.Context
-import com.shamilov.core.Constants
+import com.shamilov.core.data.Constants
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 

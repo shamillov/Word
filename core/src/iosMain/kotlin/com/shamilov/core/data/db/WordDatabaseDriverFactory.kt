@@ -1,6 +1,6 @@
 package com.shamilov.core.data.db
 
-import com.shamilov.core.Constants
+import com.shamilov.core.data.Constants
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 

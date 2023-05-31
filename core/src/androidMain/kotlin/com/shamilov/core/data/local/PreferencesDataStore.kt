@@ -1,8 +1,11 @@
 package com.shamilov.core.data.local
 
 import android.content.Context
-import com.shamilov.core.Constants.PREFERENCES_NAME
+import com.shamilov.core.data.Constants.PREFERENCES_NAME
 
+/**
+ * @author Shamilov on 31.05.2023
+ */
 actual class PreferencesDataStore(
     context: Context,
 ) {
