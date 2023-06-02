@@ -15,8 +15,17 @@ VALUES(:word,:translation,:category,:status,:example, :timestamp);
 clear:
 DELETE FROM Word;
 
-selectAllWords:
+fetchAllWords:
 SELECT * FROM Word;
+
+fetchWordById:
+SELECT * FROM Word WHERE id == :id;
+
+fetchRandomWord:
+SELECT * FROM Word ORDER BY RANDOM() LIMIT 1;
+
+fetchRandomWordId:
+SELECT * FROM Word WHERE id != :id ORDER BY RANDOM() LIMIT 1;
 
 deleteWord:
 DELETE FROM Word WHERE id = :id;

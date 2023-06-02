@@ -8,21 +8,17 @@ import com.shamilov.core.data.db.WordsDataStore
  */
 interface WidgetRepository {
     fun getWord(): Word?
-    fun changeWord(id: Long): Word?
+    fun getWordById(id: Long): Word?
+    fun changeWord(oldWordId: Long): Word?
 }
 
 internal class WidgetRepositoryImpl(
     private val wordsDataStore: WordsDataStore,
 ) : WidgetRepository {
 
-    override fun getWord() : Word? {
-        return wordsDataStore.getWords()
-            .randomOrNull()
-    }
+    override fun getWord(): Word? = wordsDataStore.getRandomWord()
 
-    override fun changeWord(id: Long): Word? {
-        return wordsDataStore.getWords()
-            .filter { id != it.id }
-            .randomOrNull()
-    }
+    override fun getWordById(id: Long): Word? = wordsDataStore.getWordById(id)
+
+    override fun changeWord(oldWordId: Long): Word? = wordsDataStore.getRandomWord(oldWordId)
 }

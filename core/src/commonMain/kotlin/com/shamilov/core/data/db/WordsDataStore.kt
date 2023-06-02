@@ -8,15 +8,19 @@ internal class WordsDataStore(databaseDriverFactory: WordDatabaseDriverFactory) 
     private val database = WordDatabase.invoke(databaseDriverFactory.createDriver())
     private val dbQuery = database.wordDatabaseQueries
 
-    fun getWords(): List<Word> {
-        return dbQuery.selectAllWords().executeAsList()
-    }
+    fun getWords(): List<Word> = dbQuery.fetchAllWords().executeAsList()
 
     fun observeWords(): Flow<List<Word>> {
-        return dbQuery.selectAllWords()
+        return dbQuery.fetchAllWords()
             .asFlow()
             .mapToList()
     }
+
+    fun getWordById(id: Long): Word? = dbQuery.fetchWordById(id).executeAsOneOrNull()
+
+    fun getRandomWord(): Word? = dbQuery.fetchRandomWord().executeAsOneOrNull()
+
+    fun getRandomWord(oldId: Long): Word? = dbQuery.fetchRandomWordId(oldId).executeAsOneOrNull()
 
     fun insertWord(
         word: String,
