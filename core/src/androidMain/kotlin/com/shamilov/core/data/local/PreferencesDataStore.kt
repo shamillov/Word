@@ -27,6 +27,14 @@ actual class PreferencesDataStore(
         sharedPreferences.edit().putString(key, value).apply()
     }
 
+    actual fun getLong(key: String): Long {
+        return sharedPreferences.getLong(key,-1L)
+    }
+
+    actual fun setLong(key: String, value: Long) {
+        sharedPreferences.edit().putLong(key, value).apply()
+    }
+
     actual fun clear() {
         sharedPreferences.edit().clear().apply()
     }

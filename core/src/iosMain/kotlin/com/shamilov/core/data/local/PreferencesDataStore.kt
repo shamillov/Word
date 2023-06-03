@@ -17,6 +17,14 @@ actual class PreferencesDataStore {
         TODO("Not yet implemented")
     }
 
+    actual fun getLong(key: String): Long {
+        TODO("Not yet implemented")
+    }
+
+    actual fun setLong(key: String, value: Long) {
+        TODO("Not yet implemented")
+    }
+
     actual fun clearValue(key: String) {
         TODO("Not yet implemented")
     }
