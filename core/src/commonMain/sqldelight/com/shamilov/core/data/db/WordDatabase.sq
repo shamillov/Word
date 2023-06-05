@@ -24,8 +24,11 @@ SELECT * FROM Word WHERE id == :id;
 fetchRandomWord:
 SELECT * FROM Word ORDER BY RANDOM() LIMIT 1;
 
-fetchRandomWordId:
-SELECT * FROM Word WHERE id != :id ORDER BY RANDOM() LIMIT 1;
+fetchNotRememberedWord:
+SELECT * FROM Word WHERE status != "remembered" ORDER BY RANDOM() LIMIT 1;
+
+updateWordStatus:
+UPDATE Word SET status = :newStatus WHERE id = :id;
 
 deleteWord:
 DELETE FROM Word WHERE id = :id;

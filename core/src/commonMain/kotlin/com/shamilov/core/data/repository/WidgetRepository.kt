@@ -2,8 +2,7 @@ package com.shamilov.core.data.repository
 
 import com.shamilov.core.data.db.Word
 import com.shamilov.core.data.db.WordsDataStore
-import com.shamilov.core.data.local.PreferencesDataStore
-import com.shamilov.core.data.local.PreferencesKeys.WIDGET_WORD_ID_KEY
+import com.shamilov.core.data.entity.WordStatus
 
 /**
  * @author Shamilov on 31.05.2023
@@ -15,24 +14,13 @@ interface WidgetRepository {
 
 internal class WidgetRepositoryImpl(
     private val wordsDataStore: WordsDataStore,
-    private val preferencesDataStore: PreferencesDataStore,
 ) : WidgetRepository {
 
-    override fun getWord(): Word? {
-        val wordId = preferencesDataStore.getLong(WIDGET_WORD_ID_KEY)
+    override fun getWord(): Word? = wordsDataStore.getRandomWord()
 
-        return if (wordId == -1L) {
-            saveAndGetWord()
-        } else {
-            wordsDataStore.getWordById(wordId)
-        }
-    }
+    override fun changeWord(oldWordId: Long): Word? {
+        wordsDataStore.updateWordStatus(oldWordId, WordStatus.REMEMBERED.status)
 
-    override fun changeWord(oldWordId: Long): Word? = wordsDataStore.getRandomWord(oldWordId)
-
-    private fun saveAndGetWord(): Word? {
-        val word = wordsDataStore.getRandomWord()
-        word?.let { preferencesDataStore.setLong(WIDGET_WORD_ID_KEY, it.id) }
-        return word
+        return wordsDataStore.getNotRememberedWord()
     }
 }

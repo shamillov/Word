@@ -20,7 +20,9 @@ internal class WordsDataStore(databaseDriverFactory: WordDatabaseDriverFactory) 
 
     fun getRandomWord(): Word? = dbQuery.fetchRandomWord().executeAsOneOrNull()
 
-    fun getRandomWord(oldId: Long): Word? = dbQuery.fetchRandomWordId(oldId).executeAsOneOrNull()
+    fun getNotRememberedWord(): Word? = dbQuery.fetchNotRememberedWord().executeAsOneOrNull()
+
+    fun updateWordStatus(id: Long, newStatus: String) = dbQuery.updateWordStatus(newStatus, id)
 
     fun insertWord(
         word: String,
