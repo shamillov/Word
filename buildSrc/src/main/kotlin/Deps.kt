@@ -25,7 +25,8 @@ object Deps {
     }
 
     object Kotlin {
-        val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
-        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}"
     }
 }

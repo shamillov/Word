@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("plugin.serialization") version Versions.kotlin
 }
 
 android {
@@ -52,5 +53,6 @@ dependencies {
     implementation(Deps.Android.Compose.uiToolingPreview)
     implementation(Deps.Android.materia3)
     implementation(Deps.Android.koinAndroid)
+    implementation(Deps.Kotlin.kotlinxSerialization)
     debugImplementation(Deps.Android.leakCanary)
 }

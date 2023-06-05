@@ -17,6 +17,7 @@ object Versions {
 
     // kotlin
     const val kotlin = "1.8.21"
+    const val kotlinxSerialization = "1.5.0"
 
     // gradle
     const val gradlePlugin = "8.0.1"

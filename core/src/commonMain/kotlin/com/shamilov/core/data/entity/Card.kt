@@ -5,11 +5,6 @@ class Card(
     val word: String,
     val translation: String,
     val category: String?,
-    val status: CardStatus,
+    val status: WordStatus,
     val example: String?,
 )
-enum class CardStatus {
-    NEW,
-    PROGRESS,
-    REMEMBERED,
-}
