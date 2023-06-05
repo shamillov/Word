@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shamilov.core.android.ui.components.CardItem
 import com.shamilov.core.data.db.Word
-import com.shamilov.core.data.entity.CardStatus
+import com.shamilov.core.data.entity.WordStatus
 import com.shamilov.core.data.repository.WordsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -63,7 +63,7 @@ internal class CardsViewModel(
             translation = translation,
             category = category,
             example = example,
-            status = CardStatus.NEW.name,
+            status = WordStatus.NEW.status,
         )
     }
 

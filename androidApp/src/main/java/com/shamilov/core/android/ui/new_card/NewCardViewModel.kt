@@ -2,7 +2,7 @@ package com.shamilov.core.android.ui.new_card
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shamilov.core.data.entity.CardStatus
+import com.shamilov.core.data.entity.WordStatus
 import com.shamilov.core.data.repository.WordsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,7 +29,7 @@ internal class NewCardViewModel(
                 translation = translation,
                 category = category,
                 example = example,
-                status = CardStatus.NEW.name,
+                status = WordStatus.NEW.status,
             )
         }
 
